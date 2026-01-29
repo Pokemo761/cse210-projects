@@ -1,8 +1,9 @@
-// You need to use this link to create the imagine
-// https://www.plantuml.com/plantuml/uml/SoWkIImgAStDuNBAJrBGjLDmpCbCJbMmKiX8pSd9vt98pKi1IW80
-
 using System;
-prompts.GetRandomPrompt();
+
+// EXCEEDING REQUIREMENTS:
+// I added a word counter to each journal entry.
+// It shows how many words the user wrote.
+// This helps people see how much they are writing.
 
 class Program
 {
@@ -20,6 +21,7 @@ class Program
             Console.WriteLine("3. Save journal");
             Console.WriteLine("4. Load journal");
             Console.WriteLine("5. Quit");
+            Console.Write("Choose an option: ");
 
             string choice = Console.ReadLine();
 
@@ -28,6 +30,8 @@ class Program
                 case "1":
                     string prompt = prompts.GetRandomPrompt();
                     Console.WriteLine(prompt);
+
+                    Console.Write("> ");
                     string response = Console.ReadLine();
 
                     Entry entry = new Entry(prompt, response);
@@ -49,6 +53,7 @@ class Program
                     break;
 
                 case "5":
+                    Console.WriteLine("Goodbye!");
                     running = false;
                     break;
             }
