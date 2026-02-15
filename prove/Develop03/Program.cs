@@ -1,47 +1,45 @@
 using System;
 
+// EXCEEDING REQUIREMENTS:
+// I added support for multiple verses (Jacob 2:1–9).
+// I also improved hiding logic so it only hides words that are not already hidden.
+// This makes the memorization experience more realistic and prevents wasted hides.
+
 class Program
 {
     static void Main()
     {
-        // Test all three constructors
-        Fraction f1 = new Fraction();        // 1/1
-        Fraction f2 = new Fraction(5);       // 5/1
-        Fraction f3 = new Fraction(3, 4);    // 3/4
-        Fraction f4 = new Fraction(1, 3);    // 1/3
+        // Reference with verse range
+        Reference reference = new Reference("Jacob", 2, 1, 9);
 
-        // Display results
-        Console.WriteLine(f1.GetFractionString());
-        Console.WriteLine(f1.GetDecimalValue());
+        // Scripture text
+        string text = @"The words which Jacob, the brother of Nephi, spake unto the people of Nephi, after the death of Nephi.
+Now, my beloved brethren, I, Jacob, according to the responsibility which I am under to God, to magnify mine office with soberness.
+And ye yourselves know that I have hitherto been diligent in the office of my calling.
+For behold, as yet, ye have been obedient unto the word of the Lord.
+But behold, hearken ye unto me, and know that by the help of the all-powerful Creator.
+Yea, it grieveth my soul and causeth me to shrink with shame before the presence of my Maker.
+And also it grieveth me that I must use so much boldness of speech concerning you.
+And it supposeth me that they have come up hither to hear the pleasing word of God.
+Wherefore, it burdeneth my soul that I should be constrained.";
 
-        Console.WriteLine(f2.GetFractionString());
-        Console.WriteLine(f2.GetDecimalValue());
+        Scripture scripture = new Scripture(reference, text);
 
-        Console.WriteLine(f3.GetFractionString());
-        Console.WriteLine(f3.GetDecimalValue());
-
-        Console.WriteLine(f4.GetFractionString());
-        Console.WriteLine(f4.GetDecimalValue());
-
-        Console.WriteLine();
-
-        // Practice using the Fraction class
-        Fraction randomFraction = new Fraction();
-        Random rand = new Random();
-
-        // Loop 20 times
-        for (int i = 1; i <= 20; i++)
+        while (!scripture.AllHidden())
         {
-            int top = rand.Next(1, 10);
-            int bottom = rand.Next(1, 10);
+            Console.Clear();
+            Console.WriteLine(scripture.GetDisplayText());
 
-            randomFraction.SetTop(top);
-            randomFraction.SetBottom(bottom);
+            Console.WriteLine("\nPress ENTER to hide words or type 'quit'");
+            string input = Console.ReadLine();
 
-            Console.WriteLine(
-                $"Fraction {i}: string: {randomFraction.GetFractionString()} " +
-                $"Number: {randomFraction.GetDecimalValue()}"
-            );
+            if (input.ToLower() == "quit")
+                break;
+
+            scripture.HideRandomWords(3);
         }
+
+        Console.Clear();
+        Console.WriteLine("Memorization complete!");
     }
 }
