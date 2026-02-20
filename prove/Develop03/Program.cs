@@ -10,7 +10,7 @@ class Program
     static void Main()
     {
         // Reference with verse range
-        Reference reference = new Reference("Jacob", 2, 1, 9);
+        Reference reference = new Reference("Jacob", 2, 1, 9); // this going back to the reference 
 
         // Scripture text
         string text = @"The words which Jacob, the brother of Nephi, spake unto the people of Nephi, after the death of Nephi.
@@ -27,8 +27,8 @@ Wherefore, it burdeneth my soul that I should be constrained.";
 
         while (!scripture.AllHidden())
         {
-            Console.Clear();
-            Console.WriteLine(scripture.GetDisplayText());
+            Console.Clear(); // clean screen
+            Console.WriteLine(scripture.GetDisplayText()); // display the scriputres
 
             Console.WriteLine("\nPress ENTER to hide words or type 'quit'");
             string input = Console.ReadLine();

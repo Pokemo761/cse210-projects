@@ -23,6 +23,6 @@ public class Word
         if (_hidden)
             return new string('_', _text.Length); // Please check if any wor should be hidden
         else
-            return _text;
+            return _text; 
     }
 } 
