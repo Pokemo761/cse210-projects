@@ -48,7 +48,11 @@ public class Activity
         Console.WriteLine($"\nYou have completed another {_duration} seconds of the {_name} Activity.");
         ShowSpinner(3);
     }
-
+    // This lets other classes see how long the activity lasted
+    public int GetDuration()
+    {
+        return _duration;
+    }
     // Show a spinner animation for the specified seconds
     public void ShowSpinner(int seconds)
     {
